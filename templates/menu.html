@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block title %}
+Menu
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+        <a href="" class="navbar-brand p-0">
+            <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0 pe-4">
+                <a href="{% url 'home_page'%}" class="nav-item nav-link ">Home</a>
+                <a href="{% url 'about'%}" class="nav-item nav-link">About</a>
+                <a href="{% url 'service'%}" class="nav-item nav-link">Clients</a>
+                <a href="{% url 'menu'%}" class="nav-item nav-link active">Menu</a>
+                <a href="{% url 'booking'%}" class="nav-item nav-link">Booking</a>
+                <a href="{%url 'contact'%}" class="nav-item nav-link">Contact</a>
+            </div>
+            <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
+        </div>
+    </nav>
+
+            <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                <div class="container text-center my-5 pt-5 pb-4">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Menu</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar & Hero End -->
+
+
+        <!-- Menu Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
+                    <h1 class="mb-5">Most Popular Items</h1>
+                </div>
+                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
+                        <div>
+                            <form class="d-flex" action="{%url 'menu'   %} " method="get">
+                                <input name="q" class="form-controlform-control" type="text" placeholder="Qidiruv...">
+                                <button type="submit" class="btn btn-warning">Go</button>                          
+                            </form>
+                        </div>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                {%for menus in menu%}
+                                <div class="col-lg-6 " >
+                                    <div class="d-flex align-items-center  " >
+                                        <img class="flex-shrink-0 img-fluid rounded" src="/media/{{menus.img}}" alt="" style="width: 80px;">
+                                        <div class="w-100 d-flex flex-column text-start ps-4 ">
+                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                <span>{{menus.title}}</span>
+                                                <span class="text-primary">${{menus.stoke}}</span>
+                                            </h5>
+                                            <div class="d-flex  justify-content-between">
+                                                <small class="fst-italic">{{menus.description}}</small>
+                                         <!-- Large button groups (default and split) -->
+                                                <div class="btn-group">
+                                                    <button class="btn btn-warning  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        resept
+                                                    </button>
+                                                    <ul   style="padding:20px;" class="dropdown-menu bg-warning text-white">
+                                                        <h4>Retsept{{menus.title}}</h4>
+                                                        {{menus.retsept}}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endfor%}
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- Menu End -->
+        
+
+         
+{%endblock%}
